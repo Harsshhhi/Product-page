@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus X9 - Smart Display | Future Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation 3D Image Carousel */
+        .nav-carousel {
+            perspective: 1000px;
+        }
+        
+        .carousel-img {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .carousel-img:hover {
+            transform: rotateY(15deg) scale(1.05);
+        }
+        
+        /* Hero Section */
+        .hero-container {
+            perspective: 1500px;
+        }
+        
+        .hero-image {
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+            will-change: transform;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotateX(0deg) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateX(5deg) rotateY(5deg);
+            }
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        /* Certificate Badges */
+        .cert-badge {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: perspective(1000px) rotateY(20deg);
+            opacity: 0.9;
+        }
+        
+        .cert-badge:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.05);
+            opacity: 1;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #4f46e5;
+            border-radius: 10px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .cert-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-carousel {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl font-bold text-indigo-600">NexusTech</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#overview" class="text-gray-700 hover:text-indigo-600 transition">Overview</a>
+                    <a href="#features" class="text-gray-700 hover:text-indigo-600 transition">Features</a>
+                    <a href="#certificates" class="text-gray-700 hover:text-indigo-600 transition">Certificates</a>
+                    <a href="#contact" class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+                </div>
+                
+                <!-- 3D Image Carousel in Nav -->
+                <div class="nav-carousel md:flex hidden items-center justify-center ml-10">
+                    <div class="flex space-x-4 overflow-x-auto py-2 scrollbar-hide max-w-xs">
+                        <div class="carousel-img w-16 h-16 rounded-lg overflow-hidden">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/25744c51-8b47-4b3a-95c7-d57fec95a161.png" alt="Nexus X9 Smart Display - silver metallic finish with edge-to-edge screen from 45-degree angle" class="w-full h-full object-cover">
+                        </div>
+                        <div class="carousel-img w-16 h-16 rounded-lg overflow-hidden">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/70ea8d5f-04d0-4a09-b526-66239849085a.png" alt="Nexus X9 Smart Display - black color variant showing ultra-thin bezels and holographic interface projection" class="w-full h-full object-cover">
+                        </div>
+                        <div class="carousel-img w-16 h-16 rounded-lg overflow-hidden">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bf3236fd-f1b2-4f2b-884b-504069645dbd.png" alt="Nexus X9 Smart Display - showing multitasking interface with floating apps and productivity tools" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-gray-300">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <div id="mobile-menu" class="hidden md:hidden absolute top-16 left-0 right-0 bg-gray-900 shadow-lg px-4 py-3">
+                    <a href="#overview" class="block py-2 text-gray-300 hover:text-indigo-400">Overview</a>
+                    <a href="#features" class="block py-2 text-gray-300 hover:text-indigo-400">Features</a>
+                    <a href="#certificates" class="block py-2 text-gray-300 hover:text-indigo-400">Certificates</a>
+                    <a href="#contact" class="block py-2 text-gray-300 hover:text-indigo-400">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="overview" class="py-16 bg-gradient-to-br from-gray-900 to-indigo-900">
+        <div class="max-w-7xl mx-auto px-4 hero-container">
+            <div class="hero-content flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl font-bold text-white-800 mb-6">Nexus X9 <span class="text-indigo-600">Smart Display</span></h1>
+                    <p class="text-gray-500 mb-8 text-lg leading-relaxed">
+                        The future of interactive displays with holographic projection, 
+                        AI-powered gesture control, and seamless multi-device connectivity. 
+                        Experience unparalleled clarity with our 8K retina display.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-8">
+                        <div class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">
+                            8K Ultra HD
+                        </div>
+                        <div class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                            Holographic UI
+                        </div>
+                        <div class="bg-pink-100 text-pink-800 px-4 py-2 rounded-full text-sm font-medium">
+                            AI Assistant
+                        </div>
+                    </div>
+                    
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:scale-105">
+                        Pre-order Now
+                    </button>
+                </div>
+                
+                <div class="md:w-1/2 hero-image" data-aos="fade-left">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a49eadf0-3bb9-47b5-8c38-11e30d9928e2.png" alt="Nexus X9 Smart Display floating in mid-air with holographic interface, showing 3D applications and glowing blue accent lighting around edges" class="w-full h-auto drop-shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Description -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Redefining Digital Interaction</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    The Nexus X9 combines cutting-edge technology with elegant design to create the most advanced smart display ever conceived.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center" data-aos="fade-up">
+                    <div class="bg-indigo-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-vector-square text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">3D Holographic Projection</h3>
+                    <p class="text-gray-600">
+                        Interact with content that floats in mid-air through our proprietary holographic technology.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-purple-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI-Powered Gesture Control</h3>
+                    <p class="text-gray-600">
+                        Our advanced AI recognizes intuitive gestures for natural, touch-free interaction.
+                    </p>
+                </div>
+                
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-pink-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-3xl text-pink-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Adaptive Display Technology</h3>
+                    <p class="text-gray-600">
+                        Automatically adjusts brightness, contrast, and color based on ambient conditions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Advanced Features</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Designed for professionals and creators who demand the best tools.
+                </p>
+            </div>
+            
+            <div class="feature-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-800 border border-gray-700 p-8 rounded-xl shadow-xl" data-aos="zoom-in">
+                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">8K Ultra HD Display</h3>
+                    <p class="text-gray-600 mb-4">
+                        Experience stunning clarity with our 7680×4320 resolution display with 120Hz refresh rate.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f0d4480c-fe2e-4e53-9794-d29aa438e073.png" alt="Close-up of Nexus X9 display showing incredibly detailed 8K image of a forest with individual leaves visible" class="w-full h-auto rounded-lg mt-4">
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-800 p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-hands-free text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Gesture Control 3.0</h3>
+                    <p class="text-gray-600 mb-4">
+                        Control the display with intuitive gestures tracked by our 360-degree motion sensors.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e593995c-09be-47dc-b2bf-e9cfb1228d79.png" alt="User interacting with Nexus X9 display using hand gestures, with glowing motion trails showing hand movements" class="w-full h-auto rounded-lg mt-4">
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-800 p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-project-diagram text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Multi-Device Ecosystem</h3>
+                    <p class="text-gray-600 mb-4">
+                        Seamlessly connect with smartphones, tablets, and computers for unified workflow.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/00b45407-a8cb-4ad2-9f53-0a2caf8ba3fd.png" alt="Nexus X9 display connected to multiple devices showing synchronized content across all screens" class="w-full h-auto rounded-lg mt-4">
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-gray-800 p-8 rounded-xl shadow-md" data-aos="zoom-in">
+                    <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Content Optimization</h3>
+                    <p class="text-gray-600 mb-4">
+                        Our AI automatically enhances images and videos in real-time for optimal viewing.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/20c6e41f-b745-4f21-80f0-2959c9d9f657.png" alt="Before and after comparison of image quality enhancement by Nexus X9 AI, showing dramatic improvement" class="w-full h-auto rounded-lg mt-4">
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-gray-800 p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-3xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Privacy Shield</h3>
+                    <p class="text-gray-600 mb-4">
+                        Advanced privacy features including AI-powered face detection and auto-lock.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/26c05df8-8b4e-48fb-82f0-0cc3f6617b1d.png" alt="Nexus X9 display detecting unauthorized user and automatically blurring sensitive content" class="w-full h-auto rounded-lg mt-4">
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-gray-800 p-8 rounded-xl shadow-md" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-solar-panel text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Eco-Friendly Design</h3>
+                    <p class="text-gray-600 mb-4">
+                        Powered by renewable energy with 40% less power consumption than competitors.
+                    </p>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/76a9bc29-c3c0-450a-96e4-54afa9aaa7d0.png" alt="Nexus X9 display with solar charging capability and eco-friendly certification badges" class="w-full h-auto rounded-lg mt-4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-16 bg-indigo-600 text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Certified Excellence</h2>
+                <p class="max-w-3xl mx-auto opacity-90">
+                    Our products meet the highest industry standards and certifications.
+                </p>
+            </div>
+            
+            <div class="cert-container flex flex-wrap justify-center gap-8 md:gap-12">
+                <div class="cert-badge bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm" data-aos="fade-up">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1519470-b255-4a54-9ad3-9a46e670efa8.png" alt="Energy Star certification logo with gold border" class="w-40 h-auto mx-auto">
+                    <h3 class="text-center mt-4 font-semibold">Energy Star Certified</h3>
+                </div>
+                
+                <div class="cert-badge bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c0c47967-ad81-47d2-9809-1b72e1127275.png" alt="ISO 9001 quality management certification seal with blue ribbon" class="w-40 h-auto mx-auto">
+                    <h3 class="text-center mt-4 font-semibold">ISO 9001 Certified</h3>
+                </div>
+                
+                <div class="cert-badge bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/89a59e6d-5905-4a51-86bb-47cd588a8a05.png" alt="Blue Angel environmental certification mark with circular design" class="w-40 h-auto mx-auto">
+                    <h3 class="text-center mt-4 font-semibold">Blue Angel Certified</h3>
+                </div>
+                
+                <div class="cert-badge bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/565f3307-04fe-4de1-a96c-03b7f06b0384.png" alt="CE certification mark indicating compliance with EU standards" class="w-40 h-auto mx-auto">
+                    <h3 class="text-center mt-4 font-semibold">CE Certified</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer id="contact" class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-3xl font-bold mb-6">Get In Touch</h2>
+                    <p class="text-gray-400 mb-8 max-w-lg">
+                        Have questions about our products? Want to learn more about Nexustech? Our team is here to help you.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-envelope text-indigo-400 text-xl"></i>
+                            <span>support@nexustech.com</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-phone-alt text-indigo-400 text-xl"></i>
+                            <span>+91 87847885</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt text-indigo-400 text-xl"></i>
+                            <span>ABES EC, Ghaziabad, 201001</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 flex items-center justify-center transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 flex items-center justify-center transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-indigo-600 flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <form class="bg-gray-800 p-8 rounded-xl">
+                        <h3 class="text-xl font-semibold mb-6">Send Us a Message</h3>
+                        
+                        <div class="grid grid-cols-1 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-400 mb-2">Full Name</label>
+                                <input type="text" id="name" class="w-full bg-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-gray-400 mb-2">Email Address</label>
+                                <input type="email" id="email" class="w-full bg-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-400 mb-2">Your Message</label>
+                                <textarea id="message" rows="4" class="w-full bg-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-16 pt-8 text-center text-gray-400">
+                <p>© 2025 Nexustech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Animation Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-quad',
+            once: true
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            
+            // Toggle hamburger icon
+            this.querySelector('i').classList.toggle('fa-bars');
+            this.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Parallax effect for hero image
+        window.addEventListener('scroll', function() {
+            const heroImg = document.querySelector('.hero-image');
+            if (heroImg) {
+                const scrollPosition = window.pageYOffset;
+                heroImg.style.transform = `translateY(${scrollPosition * -0.1}px) rotateX(${scrollPosition * 0.01}deg) rotateY(${scrollPosition * 0.005}deg)`;
+            }
+        });
+    </script>
+</body>
+</html>
+
